@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Body
+from fastapi import FastAPI
 from sqlmodel import SQLModel
 
 app = FastAPI()
@@ -60,7 +60,7 @@ def eliminar_usuario(user_id: int):
     return {"error": "Usuario no encontrado"}
 
 @app.post("/login/")
-def login(username: str = Body(...), password: str = Body(...)):
+def login(username: str, password: str):
     for usuario in usuarios:
         if usuario.nombre == username and usuario.contraseña == password: 
             return {"message": "Login exitoso"}
